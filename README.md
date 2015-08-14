@@ -15,13 +15,17 @@ For further reading
    * https://en.wikipedia.org/wiki/Limit_cycle
 
 To find a 'correct' sentence, just run the code
+
 `$ ruby this_sentence_contains.rb`
 
 -Chris
 
-p.s. To expose details of the assorted cycles of sentences found along the way, including an estimate of the relative sizes of catchment areas for each cycle, try 
+p.s. To expose details of the assorted cycles of sentences found along the way, including an estimate of the relative sizes of catchment areas for each cycle, try
+
 `$ ruby catchment_area.rb`
 
+p.p.s., here is a correct sentence
 
+> This sentence contains three As, one B, three Cs, two Ds, thirty five Es, six Fs, two Gs, seven Hs, eleven Is, one J, one K, two Ls, one M, twenty two Ns, fifteen Os, one P, one Q, five Rs, twenty six Ss, twenty one Ts, one U, seven Vs, eight Ws, three Xs, five Ys, and one Z.
 
 
