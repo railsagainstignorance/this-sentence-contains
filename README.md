@@ -19,6 +19,9 @@ To find a 'correct' sentence, just run the code
 
 -Chris
 
+p.s. To expose details of the assorted cycles of sentences found along the way, including an estimate of the relative sizes of catchment areas for each cycle, try 
+`$ ruby catchment_area.rb.rb`
+
 
 
 
