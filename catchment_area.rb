@@ -7,7 +7,7 @@ UNITS  = %w{zero one two three four five six seven eight nine ten eleven twelve 
 TENS   = %w{zero ten twenty thirty forty fifty sixty seventy eighty ninety}
 POWERS = %w{zero ten hundred thousand}
 
-KNOWN_INTS = {} # for memoizing all the sentences we come across
+KNOWN_INTS = {} # for memoizing all the numbers we come across
 
 # e.g. 102 -> "one hundred and two"
 def int_to_words( i )
