@@ -12,6 +12,7 @@ For further reading
    * https://en.wikipedia.org/wiki/Iterated_function#Fixed_points
    * https://en.wikipedia.org/wiki/100_prisoners_problem
    * https://en.wikipedia.org/wiki/Cycle_detection
+   * https://en.wikipedia.org/wiki/Limit_cycle
 
 To find a 'correct' sentence, just run the code
 `$ ruby this_sentence_contains.rb`
