@@ -1,6 +1,8 @@
 # "This sentence contains three As, two Bs, one C, one hundred and four Ds, ....., and two Zs."
 
-The challenge is to find/construct a valid, self-referential sentence of the above form. You can trim down the search space a bit by applying a bit of up front effort, e.g. there is probably only one z, but the search space is stil pretty large, and brute force is boring, so... see the code in `this_sentence_contains.rb` for a more interesting approach.
+The challenge is to find/construct a valid, self-referential sentence of the above form. 
+
+You can trim down the search space a bit by applying a bit of up front effort, e.g. there is probably only one z, but the search space is still pretty large, and brute force is boring, so... see the code in `this_sentence_contains.rb` for a more interesting approach.
 
 Originally noticed in Hofstader's book, Metamagical Themas, many years ago, I've found this is a fun little puzzle which is both a programming exercise and an exploration of some mildly counter-intuitive maths.
 
