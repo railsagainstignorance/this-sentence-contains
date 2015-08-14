@@ -28,4 +28,6 @@ p.p.s., here is a correct sentence
 
 > This sentence contains three As, one B, three Cs, two Ds, thirty five Es, six Fs, two Gs, seven Hs, eleven Is, one J, one K, two Ls, one M, twenty two Ns, fifteen Os, one P, one Q, five Rs, twenty six Ss, twenty one Ts, one U, seven Vs, eight Ws, three Xs, five Ys, and one Z.
 
+and another, with slightly different wording
 
+> This sentence realy does contain four As, one B, three Cs, three Ds, thirty eight Es, seven Fs, two Gs, nine Hs, ten Is, one J, one K, three Ls, one M, twenty three Ns, fifteen Os, one P, one Q, eleven Rs, twenty six Ss, twenty one Ts, four Us, four Vs, five Ws, three Xs, six Ys, and one Z.
