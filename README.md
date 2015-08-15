@@ -2,7 +2,7 @@
 
 The challenge is to find/construct a valid, self-referential sentence of the above form. 
 
-You can trim down the search space a bit by applying a bit of up front effort, e.g. there is probably only one z, but the search space is still pretty large, and brute force is boring, so... 
+You can trim down the search space a bit by applying some thought up front, e.g. there is probably only one z, but the search space is still pretty large, and brute force is boring, so... 
 
 Originally noticed in Hofstader's book, Metamagical Themas, many years ago, I've found this is a fun little puzzle which is both a programming exercise and an exploration of some mildly counter-intuitive maths.
 
