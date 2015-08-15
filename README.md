@@ -30,4 +30,4 @@ p.p.s., here is a correct sentence
 
 and another, with slightly different wording
 
-> This sentence realy does contain four As, one B, three Cs, three Ds, thirty eight Es, seven Fs, two Gs, nine Hs, ten Is, one J, one K, three Ls, one M, twenty three Ns, fifteen Os, one P, one Q, eleven Rs, twenty six Ss, twenty one Ts, four Us, four Vs, five Ws, three Xs, six Ys, and one Z.
+> This sentence really does contain four As, one B, three Cs, three Ds, thirty seven Es, nine Fs, one G, six Hs, eleven Is, one J, one K, four Ls, one M, twenty four Ns, fifteen Os, one P, one Q, ten Rs, twenty seven Ss, sixteen Ts, five Us, six Vs, three Ws, four Xs, five Ys, and one Z.
