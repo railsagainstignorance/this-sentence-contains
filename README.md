@@ -29,6 +29,10 @@ and another, with slightly different wording
 
 > This sentence really does contain four As, one B, three Cs, three Ds, thirty seven Es, nine Fs, one G, six Hs, eleven Is, one J, one K, four Ls, one M, twenty four Ns, fifteen Os, one P, one Q, ten Rs, twenty seven Ss, sixteen Ts, five Us, six Vs, three Ws, four Xs, five Ys, and one Z.
 
+and another
+
+> In this sentence are three As, one B, two Cs, two Ds, thirty two Es, five Fs, two Gs, six Hs, ten Is, one J, one K, one L, one M, twenty one Ns, sixteen Os, one P, one Q, seven Rs, twenty six Ss, eighteen Ts, three Us, five Vs, seven Ws, four Xs, four Ys, and one Z.
+
 ## Exploring the space
 
 The set of all possible sentences with the same wording as above is infinite, since a sentence can state that it has an arbitrarily large number of As, etc. It is [countably infinite](https://en.wikipedia.org/wiki/Countable_set), with the same cardinality as the set of natural numbers.
