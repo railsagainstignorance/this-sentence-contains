@@ -1,4 +1,4 @@
-# "This sentence contains three As, two Bs, one C, one hundred and four Ds, ....., and two Zs."
+# "This sentence contains three As, two Bs, one C, one hundred and four Ds, ... , and two Zs."
 
 The challenge is to find/construct a valid, self-referential sentence of the above form. 
 
