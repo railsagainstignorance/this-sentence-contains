@@ -65,6 +65,15 @@ var Catchment = (function() {
       ].join("");
   }
 
+  // returns the subset of the sequence which is the cycle or []
+  var find_cycle_in_sequence = function( sequence ) {
+    last_index  = sequence.length
+    last_item   = sequence[last_index -1];
+    first_index = sequence.indexOf(last_item);
+
+    return (first_index == last_index)? [] : sequence.slice(first_index, (last_index -1));
+  }
+
 
   var scan = function() {
       console.log("scanning now...");
@@ -74,6 +83,8 @@ var Catchment = (function() {
       var sentence = 'a big apple';
       console.log("count_letters('" + sentence + "')=" + JSON.stringify(count_letters(sentence)));
       console.log("contains_to_words('" + sentence + "')=" + contains_to_words('a big apple'));
+      var sequence = [1,2,3,4,5,6,7,5];
+      console.log("find_cycle_in_sequence('"+ sequence + "')=" + find_cycle_in_sequence(sequence));
   }
 
   return {
