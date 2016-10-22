@@ -7,10 +7,12 @@ var Catchment = (function() {
 
   KNOWN_INTS = {}; // for memoizing all the numbers we come across
 
+  A_TO_Y = "ABCDEFGHIJKLMNOPQRSTUVWXY".split("");
+
   // e.g. 102 -> "one hundred and two"
   var int_to_words = function( i ) {
     if (! Number.isInteger(i)) {
-      return null;
+      return 'no';
     } else if (i in KNOWN_INTS) {
       return KNOWN_INTS[i];
     };
@@ -50,13 +52,28 @@ var Catchment = (function() {
     return s.toUpperCase().match(/[A-Z]/g).reduce(function(accum, val){ accum[val] = !(val in accum)? 1 : accum[val]+1; return accum; }, {});
   }
 
+  // From a sentence (could be any string, could be garbage, doesn't matter) count the frequency of each letter,
+  // construct a valid sentence using those frequency counts.
+  var contains_to_words = function(s) { 
+    var counts = count_letters(s);
+    return [
+      "This sentence contains ",
+      A_TO_Y.map(function(p) { return letter_count_to_words(p,counts[p]); }).join(', '),
+      ', and ',
+      letter_count_to_words('Z',counts['Z']),
+      '.'
+      ].join("");
+  }
+
 
   var scan = function() {
       console.log("scanning now...");
       console.log("UNITS=" + UNITS);
       console.log("int_to_words(4176)=" + int_to_words(4176));
       console.log("letter_count_to_words('A',12)=" + letter_count_to_words('A',12));
-      console.log("count_letters('the quick brown fox')=" + JSON.stringify(count_letters('the quick brown fox')));
+      var sentence = 'a big apple';
+      console.log("count_letters('" + sentence + "')=" + JSON.stringify(count_letters(sentence)));
+      console.log("contains_to_words('" + sentence + "')=" + contains_to_words('a big apple'));
   }
 
   return {
