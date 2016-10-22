@@ -45,11 +45,18 @@ var Catchment = (function() {
     return int_to_words(count) + ' ' + p + ((count != 1)? 's' : ''); 
   }
 
+  var count_letters = function(s){
+    var accum;
+    return s.toUpperCase().match(/[A-Z]/g).reduce(function(accum, val){ accum[val] = !(val in accum)? 1 : accum[val]+1; return accum; }, {});
+  }
+
+
   var scan = function() {
       console.log("scanning now...");
       console.log("UNITS=" + UNITS);
       console.log("int_to_words(4176)=" + int_to_words(4176));
       console.log("letter_count_to_words('A',12)=" + letter_count_to_words('A',12));
+      console.log("count_letters('the quick brown fox')=" + JSON.stringify(count_letters('the quick brown fox')));
   }
 
   return {
