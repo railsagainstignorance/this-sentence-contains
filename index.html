@@ -4,20 +4,27 @@
 <head>
   <meta charset="utf-8">
   <title>This Sentence Contains - visualising high-dimensional data</title>
+    <link type="text/css" rel="stylesheet" href="demo/demo.css">
+    <link type="text/css" rel="stylesheet" href="css/scatter-matrix.css">
 </head>
 
 <body>
-  <script src="js/catchment.js"></script>
-  <h1>This sentence contains ...</h1>
+ 	<script src="js/catchment.js"></script>
+	<h1>This sentence contains ...</h1>
 
-  <button onclick="displayResult()">start looking</button>
+	<button onclick="displayResult()">start looking</button>
 
-  <div id="answer"></div>
+	<div id="answer"></div>
 
-  <script>
-	function displayResult() {
-    	document.getElementById("answer").innerHTML = Catchment.scan();
-	}
-</script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/scatter-matrix.js"></script>
+	<script>
+		function displayResult() {
+			document.getElementById("answer").innerHTML = Catchment.scan();
+			var sm = new ScatterMatrix('demo/demo.csv');
+      		sm.render();
+		}
+	</script>
+
 </body>
 </html>
