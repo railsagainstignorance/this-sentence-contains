@@ -197,3 +197,12 @@ var Catchment = (function() {
   };
 
 })();
+
+console.log("catchment: about to set event listener");
+
+self.onmessage = function(e) {
+  console.log('catchment: Message received from main script');
+  console.log('Posting message back to main script');
+  var scan_output = Catchment.scan();
+  self.postMessage(scan_output['sentence']);
+}
