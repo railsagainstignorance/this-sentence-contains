@@ -12,16 +12,27 @@
  	<script src="js/catchment.js"></script>
 	<h1>This sentence contains ...</h1>
 
-	<button onclick="displayResult()">start looking</button>
+	<p>This is a rough and ready exploration of the high dimensional (26 !!!) space of the sentences which are covered during the course of running this algorithm. The total number of distinct sentences is usually north of 100K, so this display just looks at the sentences in the small set of limit cycles.</p>
+	<p>For more info on the algorithm, see the <a href="https://github.com/railsagainstignorance/this-sentence-contains/blob/master/README.md">README</a>.</p>
 
-	<div id="answer"></div>
+	<button onclick="displayResult()">start looking</button>
+	<br>
+	<br>
+	<br>
+	<h2 id="answer"></h2>
+	<br>
+	<p id="chart-hints"></p>
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="js/scatter-matrix.js"></script>
 	<script>
 		function displayResult() {
+			console.log("button pushed!");
+			document.getElementById("answer").innerHTML = "<em>... could take a minute or so. You might want to follow the action in the console.</em>";
+			// alert(document.getElementById("answer").innerHTML);
 			var scan_result = Catchment.scan();
-			document.getElementById("answer").innerHTML = scan_result['sentence'];
+			document.getElementById("answer").textContent = scan_result['sentence'];
+			document.getElementById("chart-hints").textContent = "the default letters selected are not terribly interesting. Try the later letters, for example F which immediately brings a more interesting distribution. Also, you can select 'name' and filter by the different limit cycles.";
 			var sm = new ScatterMatrix(scan_result['d3_data']);
       		sm.render();
 		}

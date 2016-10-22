@@ -148,7 +148,22 @@ var Catchment = (function() {
   }
 
   var generate_d3_data = function(known){
-    var d3_data = Object.keys(known['knowns']).slice(1,100).map(function(s){ return count_letters(s); });
+    var d3_data = Object.keys(known['knowns']).slice(1,1000).map(function(s){ return count_letters(s); });
+    return d3_data;
+  }
+
+  var generate_cycles_d3_data = function(known){
+    var d3_data = [];
+
+    known['cycles'].forEach(function(cycle, i){
+      var name = "cycle-" + i + "(" + cycle.length + ")";
+      cycle.forEach(function(s){
+        var d3_item = count_letters(s);
+        d3_item['name'] = name;
+        d3_data.push(d3_item);
+      });
+    });
+
     return d3_data;
   }
 
@@ -166,8 +181,9 @@ var Catchment = (function() {
       console.log("probe('" + sentence + "') = " + probe_out);
       var keep_probing_out = keep_probing();
       console.log("keep_probing()['sentence']=" + keep_probing_out['sentence']);
-      var d3_data = generate_d3_data(keep_probing_out['known']);
+      var d3_data = generate_cycles_d3_data(keep_probing_out['known']);
       console.log("d3_data.length=" + d3_data.length);
+      console.log("d3_data[0]=" + JSON.stringify(d3_data[0]));
       return {
         'sentence': keep_probing_out['sentence'],
         'd3_data': d3_data

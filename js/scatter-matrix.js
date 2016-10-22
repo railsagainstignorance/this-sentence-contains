@@ -1,3 +1,5 @@
+// stolen from https://github.com/benjiec/scatter-matrix (2016/10/22)
+
 // Heavily influenced by Mike Bostock's Scatter Matrix example
 // http://mbostock.github.io/d3/talk/20111116/iris-splom.html
 //
@@ -71,6 +73,10 @@ ScatterMatrix.prototype.render = function () {
         self.__string_variable_values[k] = [];
       }
     }
+
+    string_variables.sort();
+    original_numeric_variables.sort();
+    self.__numeric_variables.sort();
 
     // For string variables, make a numeric counterpart that has as value the
     // index of the value
