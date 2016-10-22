@@ -9,7 +9,6 @@
 </head>
 
 <body>
- 	<script src="js/catchment.js"></script>
 	<h1>This sentence contains ...</h1>
 
 	<p>This is a rough and ready exploration of the high dimensional (26 !!!) space of the sentences which are covered during the course of running this algorithm. The total number of distinct sentences is usually north of 100K, so this display just looks at the sentences in the small set of limit cycles.</p>
@@ -24,16 +23,17 @@
 	<p id="chart-hints"></p>
 
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <!-- script src="js/scatter-matrix.js"></script -->
+    <script src="js/scatter-matrix.js"></script>
 	<script>
 		function displayResult() {
 			console.log("button pushed!");
 			document.getElementById("answer").innerHTML = "<em>... could take a minute or so. You might want to follow the action in the console.</em>";
 			// alert(document.getElementById("answer").innerHTML);
-			var worker = new Worker('js/scatter-matrix.js');
+			var worker = new Worker('js/catchment.js');
 
 			worker.onmessage = function(e) {
-			  console.log('Message received from worker: ' + e.data);
+				console.log('Message received from worker: ' + e.data);
+				document.getElementById("answer").textContent = e.data;
 			}
 
 			worker.postMessage("off you go then"); // Start the worker.
