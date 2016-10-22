@@ -40,12 +40,16 @@ var Catchment = (function() {
     return phrase;
   }
 
-
+  // e.g. "A", 23 -> "twenty three As"
+  var letter_count_to_words = function(p,count){
+    return int_to_words(count) + ' ' + p + ((count != 1)? 's' : ''); 
+  }
 
   var scan = function() {
       console.log("scanning now...");
       console.log("UNITS=" + UNITS);
       console.log("int_to_words(4176)=" + int_to_words(4176));
+      console.log("letter_count_to_words('A',12)=" + letter_count_to_words('A',12));
   }
 
   return {
