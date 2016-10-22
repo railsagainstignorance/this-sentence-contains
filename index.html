@@ -10,6 +10,14 @@
   <script src="js/catchment.js"></script>
   <h1>This sentence contains ...</h1>
 
-  <button onclick="Catchment.scan()">start looking</button>
+  <button onclick="displayResult()">start looking</button>
+
+  <div id="answer"></div>
+
+  <script>
+	function displayResult() {
+    	document.getElementById("answer").innerHTML = Catchment.scan();
+	}
+</script>
 </body>
 </html>
