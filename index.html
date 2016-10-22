@@ -14,7 +14,6 @@
 	<p>This is a rough and ready exploration of the high dimensional (26 !!!) space of the sentences which are covered during the course of running this algorithm. The total number of distinct sentences is usually north of 100K, so this display just looks at the sentences in the small set of limit cycles.</p>
 	<p>For more info on the algorithm, see the <a href="https://github.com/railsagainstignorance/this-sentence-contains/blob/master/README.md">README</a>.</p>
 
-	<button onclick="displayResult()">start searching</button>
 	<br>
 	<br>
 	<br>
@@ -32,19 +31,19 @@
 			var worker = new Worker('js/catchment.js');
 
 			worker.onmessage = function(e) {
-				console.log('Message received from worker: ' + e.data);
-				document.getElementById("answer").textContent = e.data;
+				var scan_output = e.data;
+				console.log('Message received from worker: ' + scan_output['sentence']);
+				document.getElementById("answer").textContent = scan_output['sentence'];
+				document.getElementById("chart-hints").textContent = "The default letters selected are not terribly interesting. Try the later letters, for example F which immediately brings a more interesting distribution. Also, you can select 'name' and filter by the different limit cycles.";
+				var sm = new ScatterMatrix(scan_output['d3_data']);
+   				sm.render();
 			}
 
 			worker.postMessage("off you go then"); // Start the worker.
 			console.log("message posted to web worker");
-
-			// var scan_result = Catchment.scan();
-			// document.getElementById("answer").textContent = scan_result['sentence'];
-			// document.getElementById("chart-hints").textContent = "the default letters selected are not terribly interesting. Try the later letters, for example F which immediately brings a more interesting distribution. Also, you can select 'name' and filter by the different limit cycles.";
-			// var sm = new ScatterMatrix(scan_result['d3_data']);
-   //    		sm.render();
 		}
+
+		displayResult();
 	</script>
 
 </body>

@@ -125,8 +125,6 @@ var Catchment = (function() {
       i += 1;
       if( i%1000==0 ){
         console.log(',');
-      } else if( i%100==0 ){
-        console.log('.');
       }
       var seed = A_TO_Z.map(function(c){ return Array(Math.floor(Math.random()*INITIAL_RANGE)).join(c); }).join("");
       r=probe(seed, known);
@@ -202,7 +200,8 @@ console.log("catchment: about to set event listener");
 
 self.onmessage = function(e) {
   console.log('catchment: Message received from main script');
-  console.log('Posting message back to main script');
+  console.log('catchment: starting scan');
   var scan_output = Catchment.scan();
-  self.postMessage(scan_output['sentence']);
+  console.log('Scan completed. Posting scan_output back to main script');
+  self.postMessage(scan_output);
 }
