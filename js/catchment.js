@@ -8,6 +8,7 @@ var Catchment = (function() {
   KNOWN_INTS = {}; // for memoizing all the numbers we come across
 
   A_TO_Y = "ABCDEFGHIJKLMNOPQRSTUVWXY".split("");
+  A_TO_Z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   // e.g. 102 -> "one hundred and two"
   var int_to_words = function( i ) {
@@ -74,6 +75,45 @@ var Catchment = (function() {
     return (first_index == last_index)? [] : sequence.slice(first_index, (last_index -1));
   }
 
+  // From a seed, iterate until we find a fixed point or a known non-fixed point.
+  // Return the fixed point, or nil.
+  var probe = function(s, known={}) { 
+    if (!('knowns' in known)) {
+      known['knowns'] = {};
+    }
+
+    var sequence = [s];
+    while (! ( s in known['knowns']) ) {
+      s2=contains_to_words(s);
+      known['knowns'][s]=s2;
+      sequence.push(s2); 
+      s=s2;
+    }
+
+    var cycle = find_cycle_in_sequence(sequence);
+    var cycle_id;
+    if (cycle.length != 0) {
+      console.log( "\nprobe: cycle found: length=" + cycle.length + "\n" );
+      if (!('cycles' in known)) {
+        known['cycles'] = [];
+      }
+
+      known['cycles'].push(cycle);
+      cycle_id = known['cycles'].length -1;
+    } else {
+      cycle_id = known['knowns'][sequence[sequence.length -1]];
+    }
+
+    sequence.forEach( function(s){ known['knowns'][s] = cycle_id; } );
+
+    if( cycle.length == 1 ) {
+      console.log("\nprobe: sequence to fixed point:\n" + sequence.slice(0,-2).map(function(s){ 
+        var counts=count_letters(s); 
+        return A_TO_Z.map(function(p){ return counts[p]; }).join(','); }).join("\n") ); 
+    }
+
+    return (cycle.length == 1)? s : null;
+  }
 
   var scan = function() {
       console.log("scanning now...");
@@ -85,6 +125,8 @@ var Catchment = (function() {
       console.log("contains_to_words('" + sentence + "')=" + contains_to_words('a big apple'));
       var sequence = [1,2,3,4,5,6,7,5];
       console.log("find_cycle_in_sequence('"+ sequence + "')=" + find_cycle_in_sequence(sequence));
+      var probe_out = probe(sentence, {});
+      console.log("probe('" + sentence + "') = " + probe_out);
   }
 
   return {
