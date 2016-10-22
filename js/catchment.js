@@ -112,8 +112,38 @@ var Catchment = (function() {
         return A_TO_Z.map(function(p){ return counts[p]; }).join(','); }).join("\n") ); 
     }
 
-    return (cycle.length == 1)? s : null;
+    return (cycle.length == 1)? s : 0;
   }
+
+// Repeatedly generate a random seed and see where it goes, until we find a fixed point.
+// Along the way print dots to indicate progress.
+// Print some stats on how many sentences were covered. 
+var keep_probing = function(){ 
+  var known = {};
+  var i=0;
+  do {
+    i += 1;
+    if( i%1000==0 ){
+      console.log(',');
+    } else if( i%100==0 ){
+      console.log('.');
+    }
+    var seed = A_TO_Z.map(function(c){ return Array(Math.floor(Math.random()*INITIAL_RANGE)).join(c); }).join("");
+    r=probe(seed, known);
+  } 
+  while( r == 0 );
+  console.log("\n\nprobes=" + i + ", knowns=" + Object.keys(known['knowns']).length+ "\n");
+
+  var catchment_per_cycle = {};
+  Object.keys(known['knowns']).forEach( function(k) {
+    var c = known['knowns'][k];
+    catchment_per_cycle[c] = (c in catchment_per_cycle)? catchment_per_cycle[c]+1 : 1; 
+  } );
+
+  console.log( "\ncycle catchments: " + Object.keys(catchment_per_cycle).map(function(c){ return catchment_per_cycle[c] + "(" + known['cycles'][c].length + ")"; }).join(', ') + "\n" );
+  return r;
+}
+
 
   var scan = function() {
       console.log("scanning now...");
@@ -127,11 +157,14 @@ var Catchment = (function() {
       console.log("find_cycle_in_sequence('"+ sequence + "')=" + find_cycle_in_sequence(sequence));
       var probe_out = probe(sentence, {});
       console.log("probe('" + sentence + "') = " + probe_out);
+      var keep_probing_out = keep_probing();
+      console.log("keep_probing()=" + keep_probing_out);
+      return keep_probing_out;
   }
 
   return {
     scan: function() {
-      scan();
+      return scan();
     }
   };
 
