@@ -2,9 +2,10 @@
 // http://mbostock.github.io/d3/talk/20111116/iris-splom.html
 //
 
-ScatterMatrix = function(url, data, dom_id, el) {
+ScatterMatrix = function(data_hash, url, data, dom_id, el) {
   this.__url = url;
-  if (data === undefined || data === null) { this.__data = undefined; }
+  if (data_hash != null) { this.__data = data_hash; }
+  else if (data === undefined || data === null) { this.__data = undefined; }
   else { this.__data = d3.csv.parse(data); }
   this.__cell_size = 140;
   if (dom_id === undefined) { this.__dom_id = 'body'; }

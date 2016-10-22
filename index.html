@@ -20,8 +20,9 @@
     <script src="js/scatter-matrix.js"></script>
 	<script>
 		function displayResult() {
-			document.getElementById("answer").innerHTML = Catchment.scan();
-			var sm = new ScatterMatrix('demo/demo.csv');
+			var scan_result = Catchment.scan();
+			document.getElementById("answer").innerHTML = scan_result['sentence'];
+			var sm = new ScatterMatrix(scan_result['d3_data']);
       		sm.render();
 		}
 	</script>

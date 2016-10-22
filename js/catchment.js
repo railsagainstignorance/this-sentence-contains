@@ -112,38 +112,45 @@ var Catchment = (function() {
         return A_TO_Z.map(function(p){ return counts[p]; }).join(','); }).join("\n") ); 
     }
 
-    return (cycle.length == 1)? s : 0;
+    return (cycle.length == 1)? s : null;
   }
 
-// Repeatedly generate a random seed and see where it goes, until we find a fixed point.
-// Along the way print dots to indicate progress.
-// Print some stats on how many sentences were covered. 
-var keep_probing = function(){ 
-  var known = {};
-  var i=0;
-  do {
-    i += 1;
-    if( i%1000==0 ){
-      console.log(',');
-    } else if( i%100==0 ){
-      console.log('.');
-    }
-    var seed = A_TO_Z.map(function(c){ return Array(Math.floor(Math.random()*INITIAL_RANGE)).join(c); }).join("");
-    r=probe(seed, known);
-  } 
-  while( r == 0 );
-  console.log("\n\nprobes=" + i + ", knowns=" + Object.keys(known['knowns']).length+ "\n");
+  // Repeatedly generate a random seed and see where it goes, until we find a fixed point.
+  // Along the way print dots to indicate progress.
+  // Print some stats on how many sentences were covered. 
+  var keep_probing = function(){ 
+    var known = {};
+    var i=0;
+    do {
+      i += 1;
+      if( i%1000==0 ){
+        console.log(',');
+      } else if( i%100==0 ){
+        console.log('.');
+      }
+      var seed = A_TO_Z.map(function(c){ return Array(Math.floor(Math.random()*INITIAL_RANGE)).join(c); }).join("");
+      r=probe(seed, known);
+    } 
+    while( r == null );
+    console.log("\n\nprobes=" + i + ", knowns=" + Object.keys(known['knowns']).length+ "\n");
 
-  var catchment_per_cycle = {};
-  Object.keys(known['knowns']).forEach( function(k) {
-    var c = known['knowns'][k];
-    catchment_per_cycle[c] = (c in catchment_per_cycle)? catchment_per_cycle[c]+1 : 1; 
-  } );
+    var catchment_per_cycle = {};
+    Object.keys(known['knowns']).forEach( function(k) {
+      var c = known['knowns'][k];
+      catchment_per_cycle[c] = (c in catchment_per_cycle)? catchment_per_cycle[c]+1 : 1; 
+    } );
 
-  console.log( "\ncycle catchments: " + Object.keys(catchment_per_cycle).map(function(c){ return catchment_per_cycle[c] + "(" + known['cycles'][c].length + ")"; }).join(', ') + "\n" );
-  return r;
-}
+    console.log( "\ncycle catchments: " + Object.keys(catchment_per_cycle).map(function(c){ return catchment_per_cycle[c] + "(" + known['cycles'][c].length + ")"; }).join(', ') + "\n" );
+    return { 
+      "sentence": r,
+      "known": known
+     };
+  }
 
+  var generate_d3_data = function(known){
+    var d3_data = Object.keys(known['knowns']).slice(1,100).map(function(s){ return count_letters(s); });
+    return d3_data;
+  }
 
   var scan = function() {
       console.log("scanning now...");
@@ -158,8 +165,13 @@ var keep_probing = function(){
       var probe_out = probe(sentence, {});
       console.log("probe('" + sentence + "') = " + probe_out);
       var keep_probing_out = keep_probing();
-      console.log("keep_probing()=" + keep_probing_out);
-      return keep_probing_out;
+      console.log("keep_probing()['sentence']=" + keep_probing_out['sentence']);
+      var d3_data = generate_d3_data(keep_probing_out['known']);
+      console.log("d3_data.length=" + d3_data.length);
+      return {
+        'sentence': keep_probing_out['sentence'],
+        'd3_data': d3_data
+      };
   }
 
   return {
