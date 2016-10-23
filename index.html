@@ -34,7 +34,15 @@
 				var scan_output = e.data;
 				console.log('Message received from worker: ' + scan_output['sentence']);
 				document.getElementById("answer").textContent = scan_output['sentence'];
-				document.getElementById("chart-hints").textContent = "The default letters selected are not terribly interesting. Try the later letters, for example F which immediately brings a more interesting distribution. Also, you can select 'name' and filter by the different limit cycles.";
+				document.getElementById("chart-hints").innerHTML = "<p>\
+				Each square in the grid shows the distribution of all the sentences using the counts of two of the letters, e.g. B and C, as the x and y axes. So if there are, say, 1000 sentences which are included in the display (e.g. all those which are in limit cycles), there will be 1000 dots in each of the squares. The squares themselves are laid out so every pairing of the selected letters has its own square.  \
+				</p>\
+				<p>\
+				You can filter the dots from different limit cycles by clicking on the variable 'name'.\
+				</p>\
+				<p>\
+				The default letters selected are not terribly interesting. Try the later letters, e.g. F, which immediately shows a more interesting distribution. Also, you can select 'name' and filter by the different limit cycles.\
+				</p>";
 				var sm = new ScatterMatrix(scan_output['d3_data']);
    				sm.render();
 			}
